@@ -3,7 +3,7 @@
 This is a simple, generic example of a custom face recognition skill for images using the [Box Skills Kit](https://github.com/box/box-skills-kit-nodejs)
 and [Hive Predict](https://thehive.ai/docs#hive-predict-api).
 
-![screenshot](/screenshots/obama_and_joe.jpg)
+![screenshot](https://i.imgur.com/awE4Iif.jpg)
 
 ### Getting started with Hive
 
@@ -42,7 +42,7 @@ The following demonstrates how to quickly deploy to [Webtask](https://webtask.io
 
 
 
-![screenshot](/screenshots/bill_and_neil.jpg)
+![screenshot](https://i.imgur.com/5CkvL79.jpg)
 
 
 
