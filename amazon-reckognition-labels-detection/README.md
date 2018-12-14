@@ -39,7 +39,7 @@ Next, follow our guide on configuring Serverless for AWS, or any of the guides o
 Clone this repo and change directory into the amazon-label-skill folder
 
 `git clone https://github.com/box-community/sample-document-skills`
-`cd amazon-label-skill`
+`cd amazon-rekognition-labels-detection`
 
 Deploy to AWS using serverless
 `serverless deploy -v`
