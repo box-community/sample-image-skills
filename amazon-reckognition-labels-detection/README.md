@@ -3,8 +3,7 @@
 
 Amazon Rekognition provides image and video analysis. The [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectLabels.html) endpoint that is used in this application detects instances of real-world entities that are captured in a provided image. The data that can be returned from using this skill is usually objects, events, or concepts that are present in the image provided (see screenshots folder for example return data)
 
-## Example
-[Vintage Ad](screenshots/Example2.jpg)
+![Vintage Ad](screenshots/Example2.jpg)
 
 # Usage
 ## Prerequisites
@@ -40,7 +39,7 @@ Next, follow our guide on configuring Serverless for AWS, or any of the guides o
 Clone this repo and change directory into the amazon-label-skill folder
 
 `git clone https://github.com/box-community/sample-document-skills`
-`cd amazon-reckognition-labels-detection`
+`cd amazon-rekognition-labels-detection`
 
 Deploy to AWS using serverless
 `serverless deploy -v`
