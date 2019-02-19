@@ -1,0 +1,60 @@
+{
+    "name": "google-nodejs-vision-skill",
+    "version": "v1.0.0",
+    "description": "Box Skill to process image files with Google's Cloud Vision API",
+    "main": "index.js",
+    "scripts": {
+        "postinstall": "npm rebuild grpc --target=8.1.0 --target_arch=x64 --target_platform=linux --target_libc=glibc",
+        "flow": "flow",
+        "zip": "zip -rMM9 -q ../gcv-image-nodejs * -x *.json && echo \"\\033[0;32m SUCCESS: gcv-image-nodejs.zip created! \\033[0m\n\" || echo \"\\033[0;31m FAIL: Zip creation failed \\033[0m\n\"",
+        "build": "npx babel google --out-dir lib/google --ignore google/test; npx babel box --out-dir lib/box; npx babel index.js --out-dir lib; cp package.json lib/; cd lib; NODE_ENV=production npm install; npm run zip",
+        "test": "jest --coverage",
+        "deploy": "npm run build; serverless deploy",
+        "undeploy": "serverless remove -v",
+        "precommit": "lint-staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://git.dev.box.net/Box/box-skills.git"
+    },
+    "author": "Box Skills",
+    "private": true,
+    "homepage": "https://git.dev.box.net/Box/box-skills/#readme",
+    "dependencies": {
+        "@google-cloud/vision": "^0.12.0",
+        "ajv": "^5.5.2",
+        "unescape-js": "^1.1.1",
+        "box-node-sdk": "^1.25.0",
+        "jimp": "^0.5.4",
+        "lodash": "^4.17.11",
+        "moment": "^2.24.0",
+        "path": "^0.12.7",
+        "url-template": "^2.0.8"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.2.6",
+        "babel-plugin-typecheck": "^3.9.0",
+        "babel-preset-flow": "^6.23.0",
+        "flow-bin": "^0.70.0",
+        "husky": "^0.14.3",
+        "jest": "^23.2.0",
+        "lint-staged": "^7.3.0",
+        "prettier": "^1.15.3",
+        "serverless": "^1.36.1"
+    },
+    "jest": {
+        "verbose": false,
+        "collectCoverageFrom": [
+            "google/*.js",
+            "index.js"
+        ]
+    },
+    "lint-staged": {
+        "**/*.js": [
+            "./node_modules/.bin/prettier \"**/*.js\" --print-width 120 --single-quote --tab-width 4 --write",
+            "./node_modules/.bin/eslint **/*.js --fix",
+            "git add"
+        ]
+    }
+}

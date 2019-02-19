@@ -1,0 +1,39 @@
+# For full Serverless config options, check the docs:
+#    https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/
+
+service: box-skills-ms-ams-image
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  timeout: 30 # attached to API Gateway so it's automatically limited to 30 seconds.
+  versionFunctions: true # maintains past versions in single deployment
+
+
+# overwriting defaults
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+
+# service wide environment variables
+  environment:
+    BOX_API_ENDPOINT: https://api.box.com/2.0
+    DEBUG: ${opt:debug, 'true'}
+    AMS_DEPLOYMENT_LOCATION: ${opt:location, 'westus2'}
+    MICROSOFT_KEY: ADD_YOUR_KEY_HERE
+    SKILL_FILE_SIZE_LIMIT_MB: '4'
+    SKILL_ACCEPTED_FORMATS: 'ai,bmp,gif,heic,jpeg,jpg,png,ps,psd,svg,tif,tiff,dcm,dicm,dicom,svs,tga'
+    SKILL_USE_ORIGINAL_FILE_FOR: 'jpeg,jpg,png,gif,bmp,tif'
+
+
+
+# packaging information
+package:
+  artifact: ./ams-image-nodejs.zip
+
+functions:
+  skill:
+    handler: intrinsic.handler
+    events: # The Events that trigger this Function
+      - http:
+          path: ${self:service}
+          method: any
