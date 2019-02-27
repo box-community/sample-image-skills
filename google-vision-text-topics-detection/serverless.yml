@@ -1,0 +1,38 @@
+# For full Serverless config options, check the docs:
+#    https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/
+
+service: box-skills-google-image
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  timeout: 60 # 1 min
+  versionFunctions: true # maintains past versions in single deployment
+
+
+# overwriting defaults
+  stage: ${opt:stage, 'dev'}
+  region: us-east-2
+
+# service wide environment variables
+  environment:
+    BOX_API_ENDPOINT: https://api.box.com/2.0
+    DEBUG: ${opt:debug, 'true'}
+    GCV_PROJECT_ID: ADD_YOUR_GOOGLE_CREDENTIALS_HERE
+    GCV_PRIVATE_KEY: ADD_YOUR_GOOGLE_CREDENTIALS_HERE
+    GCV_CLIENT_EMAIL: ADD_YOUR_GOOGLE_CREDENTIALS_HERE
+    SKILL_FILE_SIZE_LIMIT_MB: '10'
+    SKILL_ACCEPTED_FORMATS: 'ai,bmp,gif,eps,heic,jpeg,jpg,png,ps,psd,svg,tif,tiff,dcm,dicm,dicom,svs,tga'
+    SKILL_USE_ORIGINAL_FILE_FOR: 'jpg,jpeg,png,gif,bmp,webp,ico'
+
+# packaging information
+package:
+  artifact: ./gcv-image-nodejs.zip
+
+functions:
+  skill:
+    handler: index.handler
+    events: # The Events that trigger this Function
+      - http:
+          path: ${self:service}
+          method: any

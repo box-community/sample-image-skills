@@ -1,0 +1,67 @@
+{
+    "name": "microsoft-nodejs-image-recognition-skill",
+    "version": "v1.0.0",
+    "description": "Box Skill to process image files with Microsoft's AMS Computer Vision API",
+    "main": "index.js",
+    "scripts": {
+        "format": "NODE_ENV=dev ./node_modules/.bin/prettier \"**/*.js\" --print-width 120 --single-quote --tab-width 4 --write; ./node_modules/.bin/eslint \"**/*.js\" --fix",
+        "flow": "flow",
+        "zip": "zip -rMM9 -q ../ams-image-nodejs * -x *.json && echo \"\\033[0;32m SUCCESS: ams-image-nodejs.zip created! \\033[0m\n\" || echo \"\\033[0;31m FAIL: Zip creation failed \\033[0m\n\"",
+        "build": "npx babel microsoft --out-dir lib/microsoft --ignore microsoft/test; npx babel box --out-dir lib/box; npx babel index.js --out-dir lib; cp package.json lib/; cd lib; NODE_ENV=production npm install; npm run zip",
+        "test": "jest --coverage",
+        "deploy": "npm run build; serverless deploy",
+        "undeploy": "serverless remove -v",
+        "precommit": "lint-staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://git.dev.box.net/Box/box-skills.git"
+    },
+    "author": "Box Skills",
+    "private": true,
+    "homepage": "https://git.dev.box.net/Box/box-skills/#readme",
+    "dependencies": {
+        "request": "^2.87.0",
+        "enum": "^2.5.0",
+        "box-node-sdk": "^1.25.0",
+        "jimp": "^0.5.4",
+        "lodash": "^4.17.11",
+        "moment": "^2.24.0",
+        "path": "^0.12.7",
+        "url-template": "^2.0.8"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.2.1",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-plugin-typecheck": "^3.9.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-flow": "^6.23.0",
+        "eslint": "^4.19.1",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-config-box-skills": "^1.0.0-beta",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-promise": "^3.8.0",
+        "flow-bin": "^0.70.0",
+        "husky": "^0.14.3",
+        "jest": "^23.4.1",
+        "lint-staged": "^7.0.0",
+        "prettier": "^1.11.1",
+        "serverless": "^1.27.2"
+    },
+    "jest": {
+        "verbose": false,
+        "collectCoverageFrom": [
+            "microsoft/*.js",
+            "index.js"
+        ]
+    },
+    "lint-staged": {
+        "**/*.js": [
+            "./node_modules/.bin/prettier \"**/*.js\" --print-width 120 --single-quote --tab-width 4 --write",
+            "./node_modules/.bin/eslint **/*.js --fix",
+            "git add"
+        ]
+    }
+}
