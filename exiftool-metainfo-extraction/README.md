@@ -49,7 +49,7 @@ cd sample-image-skills/exiftool-metainfo-extraction
 Then simply deploy the Skill using Serverless.
 
 ```bash
-serverless deploy -v
+npm run deploy
 ```
 
 At the end of this, you will have an invocation URL for your Lambda function. 
