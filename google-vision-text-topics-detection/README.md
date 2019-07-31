@@ -36,7 +36,7 @@ Clone this repo and change into the sample folder.
 
 ```bash
 git clone https://github.com/box-community/sample-image-skills
-cd sample-image-skills/exiftool-metainfo-extraction
+cd sample-image-skills/google-vision-text-topics-detection
 ```
 
 Then simply deploy the Skill using Serverless.
