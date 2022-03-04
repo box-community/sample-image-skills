@@ -29,7 +29,7 @@
         "box-node-sdk": "^1.29.0",
         "collections": "^5.1.9",
         "jimp": "^0.5.4",
-        "lodash": "^4.17.10",
+        "lodash": "^4.17.21",
         "path": "^0.12.7",
         "serverless-google-cloudfunctions": "^2.3.2",
         "url-template": "^2.0.8"
