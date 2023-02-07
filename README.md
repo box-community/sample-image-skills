@@ -1,6 +1,6 @@
-#This repository has been archived due to our current work to update all Box Skills sample code. We will be releasing updated examples soon.
+# This repository has been archived due to our current work to update all Box Skills sample code. We will be releasing updated examples soon.
 
-##Box Skills Samples: Custom Skills for Processing Images
+## Box Skills Samples: Custom Skills for Processing Images
 
 These are community created Box Skills samples for processing **image files** on Box. By clicking on each sub-folder, you can see a demo image of the end product, as it would look in your Box file preview.
 
